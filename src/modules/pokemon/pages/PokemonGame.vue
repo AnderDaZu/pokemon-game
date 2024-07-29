@@ -7,7 +7,7 @@
     <section v-else class="flex flex-col justify-center items-center w-screen h-screen">
         <h1 class="text-3xl font-semibold mb-4">¿Quién es este pokemon?</h1>
 
-        <h3 class="capitalize">{{ gameStatus }}</h3>
+        <button v-if="gameStatus !== GameStatus.Playing" @click="getNextRound(4)">Jugar de nuevo</button>
 
         <!-- pokemon picture -->
         <PokemonPicture :pokemon-id="randomPokemon.id" :show-pokemon="gameStatus !== GameStatus.Playing" />
@@ -25,9 +25,16 @@ import PokemonOptions from '../components/PokemonOptions.vue';
 import { usePokemonGame } from '../composables/usePokemonGame';
 import { GameStatus } from '../interfaces';
 
-const { gameStatus, isLoading, randomPokemon, pokemonOptions: options, checkAnswer } = usePokemonGame();
+const { gameStatus, isLoading, randomPokemon, pokemonOptions: options, checkAnswer, getNextRound } = usePokemonGame();
 
 // const onSelectedOPtion = ( value: number ) => {
 //     console.log(value);
 // }
 </script>
+
+<style scoped>
+button {
+    @apply bg-indigo-300 shadow-md p-2 mb-4 rounded-lg cursor-pointer text-center text-indigo-700 w-40 
+    hover:bg-indigo-600 hover:text-indigo-100 font-semibold transition-all;
+}
+</style>
