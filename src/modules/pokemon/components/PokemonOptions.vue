@@ -39,13 +39,13 @@ defineEmits<{
 
 <style scoped>
 button {
-    @apply bg-slate-200 shadow-md p-2 my-2 rounded-lg cursor-pointer text-center w-40 transition-all hover:bg-slate-300;
+    @apply bg-slate-200 shadow-md p-1 sm:p-2 my-2 rounded-lg cursor-pointer text-center text-sm sm:text-base md:text-lg w-40 transition-all hover:bg-slate-300;
 }
 .correct {
-    @apply bg-blue-500 hover:bg-blue-500 text-white;
+    @apply bg-blue-500 hover:bg-blue-500 text-white cursor-default;
 }
 .incorrect {
-    @apply bg-gray-300 hover:bg-gray-300 opacity-70;
+    @apply bg-gray-300 hover:bg-gray-300 opacity-70 cursor-default;
 }
 .selected {
     @apply border-gray-500 border-2;

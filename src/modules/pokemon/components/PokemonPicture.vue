@@ -2,11 +2,11 @@
     <section>
         <img :src="pokemonImage" 
             v-if="!showPokemon"
-            class="brightness-0 h-[200px]"
+            class="brightness-0 h-[120px] sm:h-[160px] md:h-[200px]"
             alt="">
         <img :src="pokemonImage" 
             v-else
-            class="fade-in h-[200px]"
+            class="fade-in h-[120px] sm:h-[160px] md:h-[200px]"
             alt="">
     </section>
 </template>
