@@ -55,4 +55,43 @@ describe('<PokemonOptions />', () => {
         
 
     });
+
+    test('sholud disabled buttons when blockSelection prop is true', () => {
+        const wrapper = mount(PokemonOptions, {
+            props: {
+                options,
+                blockSelection: true,
+                correctAnswer: 1
+            }
+        });
+
+        const buttons = wrapper.findAll('button');
+        
+        buttons.forEach( button => {
+            const attributes = Object.keys( button.attributes() );
+            expect( attributes ).toContain('disabled');
+        });
+    });
+
+    test('should apply correct styling to buttons based on correct/incorrect answerd', () => {
+        const correctAnswer = 1;
+
+        const wrapper = mount(PokemonOptions, {
+            props: {
+                options,
+                blockSelection: true,
+                correctAnswer,
+            }
+        });
+
+        const buttons = wrapper.findAll('button');
+
+        buttons.forEach( (button, index) => {
+            if ( options[index].id === correctAnswer ) {
+                expect( button.classes() ).toContain('correct');
+            } else {
+                expect( button.classes() ).toContain('incorrect');
+            }
+        });
+    });
 });
