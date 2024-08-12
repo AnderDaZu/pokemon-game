@@ -64,4 +64,29 @@ describe('usePokemonGame', () => {
 
         expect( results.pokemonOptions.value ).toHaveLength( 4 );
     });
+
+    test('should correctly handle a incorrect answer', async () => {
+        const [results] = withSetup(usePokemonGame);
+        await flushPromises();
+
+        const { checkAnswer, gameStatus } = results;
+        expect( gameStatus.value ).toBe( GameStatus.Playing );
+        console.log(gameStatus.value);
+        
+        checkAnswer(1000);
+        expect( gameStatus.value ).toBe( GameStatus.Lost );
+        console.log(gameStatus.value);
+        
+    });
+    
+    test('should correctly handle a correct answer', async () => {
+        const [results] = withSetup(usePokemonGame);
+        await flushPromises();
+
+        const { checkAnswer, gameStatus, randomPokemon } = results;
+        expect( gameStatus.value ).toBe( GameStatus.Playing );
+
+        checkAnswer( randomPokemon.value.id );
+        expect( gameStatus.value ).toBe( GameStatus.Won );
+    });
 });
