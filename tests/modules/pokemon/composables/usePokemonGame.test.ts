@@ -32,4 +32,36 @@ describe('usePokemonGame', () => {
             name: expect.any( String ),
         } );
     });
+
+    test('should correctly handle getNettRound', async () => {
+
+        const [ results ] = withSetup( usePokemonGame );
+
+        await flushPromises();
+        results.gameStatus.value = GameStatus.Won;
+
+        // estimulos
+        results.getNextRound(5);
+
+        expect( results.gameStatus.value ).toBe(GameStatus.Playing);
+        expect( results.pokemonOptions.value ).toHaveLength( 5 );
+    });
+    
+    test('should correctly handle getNextRound and return different pokemons', async () => {
+
+        const [ results ] = withSetup( usePokemonGame );
+        await flushPromises();
+
+        const firstOptions = [...results.pokemonOptions.value].map( (p) => p.name);
+
+        results.getNextRound(4);
+
+        const secondOptions = [...results.pokemonOptions.value];
+
+        secondOptions.forEach( pokemon => {
+            expect( firstOptions ).not.toContain( pokemon.name );
+        });
+
+        expect( results.pokemonOptions.value ).toHaveLength( 4 );
+    });
 });
