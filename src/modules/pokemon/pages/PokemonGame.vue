@@ -35,8 +35,8 @@
             <h1>¿Quién es este pokemon?</h1>
     
             <div class="flex flex-col sm:flex-row sm:gap-2">
-                <button v-if="gameStatus !== GameStatus.Playing" @click="getNextRound(4)">Continuar</button>
-                <button v-if="gameStatus !== GameStatus.Playing" @click="restartGame()" class="button-restart">Iniciar de nuevo</button>
+                <button v-if="gameStatus !== GameStatus.Playing" @click="getNextRound(4)" data-test-id="btn-new-game">Continuar</button>
+                <button v-if="gameStatus !== GameStatus.Playing" @click="restartGame()" class="button-restart" >Iniciar de nuevo</button>
             </div>
     
             <!-- pokemon picture -->
